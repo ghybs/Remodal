@@ -770,7 +770,7 @@
         if (current.settings.closeOnEscape && e.keyCode === 27) {
           current.close();
         } else if (current.settings.confirmOnEnter && e.keyCode === 13) {
-          remodal.close(STATE_CHANGE_REASONS.CONFIRMATION);
+          current.close(STATE_CHANGE_REASONS.CONFIRMATION);
         }
       }
     });
