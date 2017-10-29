@@ -68,6 +68,7 @@
     hashTracking: true,
     closeOnConfirm: true,
     closeOnCancel: true,
+    confirmOnEnter: false,
     closeOnEscape: true,
     closeOnOutsideClick: true,
     modifier: '',
@@ -765,8 +766,12 @@
 
     // Handles the keydown event
     $(document).on('keydown.' + NAMESPACE, function(e) {
-      if (current && current.settings.closeOnEscape && current.state === STATES.OPENED && e.keyCode === 27) {
-        current.close();
+      if (current && current.state === STATES.OPENED) {
+        if (current.settings.closeOnEscape && e.keyCode === 27) {
+          current.close();
+        } else if (current.settings.confirmOnEnter && e.keyCode === 13) {
+          remodal.close(STATE_CHANGE_REASONS.CONFIRMATION);
+        }
       }
     });
 
